@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical" >
+	
+    <LinearLayout
+    	android:layout_width="fill_parent"
+    	android:layout_height="wrap_content"
+    	android:layout_gravity="top"
+    	android:orientation="vertical" >
+    	<TextView
+        	android:id="@+id/trip_route"
+        	android:layout_width="fill_parent"
+        	android:layout_height="wrap_content"
+        	android:textStyle="bold"
+        	android:typeface="sans"/>
+    	<TextView
+        	android:id="@+id/trip_description"
+        	android:layout_width="fill_parent"
+        	android:layout_height="wrap_content"
+        	android:textSize="14sp"
+        	android:typeface="sans"/>
+    	<TextView
+        	android:id="@+id/trip_direction"
+        	android:layout_width="fill_parent"
+        	android:layout_height="wrap_content"
+        	android:textStyle="bold"
+        	android:typeface="sans"/>
+    	<TextView
+        	android:id="@+id/trip_location"
+        	android:layout_width="fill_parent"
+        	android:layout_height="wrap_content"
+        	android:textStyle="bold"
+        	android:typeface="sans"/>
+    	    	
+    </LinearLayout>
+    <View android:id="@+id/separator" 
+ 		android:background="#ffffff" 
+ 		android:layout_width = "fill_parent"
+ 		android:layout_height="1dip"
+ 		android:layout_centerVertical ="true"
+ 		android:layout_alignParentTop="true"/>
+    
+    <ListView
+        android:id="@android:id/android:list"
+        android:layout_gravity="bottom"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" />
+
+</LinearLayout>
