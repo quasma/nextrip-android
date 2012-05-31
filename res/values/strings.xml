@@ -6,15 +6,26 @@
     <string name="choose_stop">Choose Stop</string>
     <string name="choose_favorite">Find By Favorite</string>
     <string name="choose_location">Find By Location</string>
-    <string name="choose_by_stop">Find By Stop</string>
+    <string name="choose_by_stop">Find By Stop Number</string>
     <string name="notrips">No Trips Available</string>
+	<string name="noroutes">No Routes Available</string>
+	<string name="nodirections">No Directions Available</string>
+	<string name="nostops">No Stops Available</string>
+	<string name="nofavorites">No Favorites</string>    
     <string name="nodata">No Data Available</string>
     <string name="noconnection">No Data Connection Available</string>
     <string name="request_invalid">Invalid Request</string>
     <string name="settings">Settings</string>
     <string name="refresh">Refresh</string>
     <string name="home">Home</string>
-    <string name="choose_stop_number">Choose Stop Number</string>
+    <string name="choose_stop_number">Enter Stop Number</string>
     <string name="Next">Next</string>
+    <string name="RouteNumber">Route {0}</string>
+    <string name="search">Search</string>
+    <string name="routelisting">Route Listing</string>
+    <string name="favoritelisting">Favorites</string>
+    <string name="about">About</string>
+    <string name="stopnumberhint">Stop Number</string>
+    <string name="stopnumber">Stop Number {0}</string>    
     
 </resources>

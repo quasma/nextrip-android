@@ -4,9 +4,9 @@
     android:layout_height="wrap_content"
     android:orientation="vertical" >
 	
-	<include layout="@layout/trips_title_bar"/>
-	
-   	<LinearLayout
+    <include layout="@layout/title_bar_favorite"/>
+    	
+	<LinearLayout
     	android:layout_width="fill_parent"
     	android:layout_height="wrap_content"
     	android:orientation="vertical" >
@@ -19,13 +19,12 @@
 
         <TextView
         	android:id="@android:id/empty"
-        	android:layout_gravity="bottom"
+        	android:layout_gravity="center"
         	android:layout_width="fill_parent"
         	android:layout_height="wrap_content"
         	android:textStyle="bold"
         	android:textSize="30sp"
         	android:typeface="sans"/>
 	</LinearLayout>
-    
 
 </LinearLayout>
