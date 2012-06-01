@@ -12,7 +12,11 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
+import android.widget.EditText;
+import android.widget.FilterQueryProvider;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -22,6 +26,8 @@ public class RouteActivity extends BaseListActivity
 	private BroadcastReceiver requestReceiver;
 	private NexTripServiceHelper nexTripServiceHelper;
 	private IntentFilter filter = new IntentFilter(NexTripServiceHelper.ACTION_REQUEST_RESULT);
+	private RouteCursorAdapter adapter;
+	private EditText filterText;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) 
@@ -38,11 +44,34 @@ public class RouteActivity extends BaseListActivity
 
 		startManagingCursor(cursor);
 
-		RouteCursorAdapter mAdapter = new RouteCursorAdapter(this, cursor);
+		adapter = new RouteCursorAdapter(this, cursor);
+		setListAdapter(adapter);
+		filterText = (EditText) findViewById(R.id.search_box);
+		filterText.addTextChangedListener(filterTextWatcher);
+   	 	adapter.setFilterQueryProvider(new FilterQueryProvider() 
+   	 	{
+   	 		public Cursor runQuery(CharSequence constraint) 
+   	 		{
+   	 			Cursor cursor = getContentResolver().query(RouteList.CONTENT_URI,
+   	 				RouteTable.DISPLAY_COLUMNS, RouteTable.DESC + " LIKE %?%" , new String[] { constraint.toString() } , RouteTable.ROUTE);
 
-		setListAdapter(mAdapter);
-
+   	 			return cursor;
+   	 		}
+   	 	});
 	}
+	
+	private TextWatcher filterTextWatcher = new TextWatcher()
+	{
+		public void afterTextChanged(Editable s) {}
+
+	    public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+
+	    public void onTextChanged(CharSequence s, int start, int before, int count) 
+	    {
+	    	adapter.getFilter().filter(s);
+	    }
+	};
+	
 	@Override
 	protected void onResume() 
 	{
