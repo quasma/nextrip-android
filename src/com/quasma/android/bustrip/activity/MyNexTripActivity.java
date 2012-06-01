@@ -69,30 +69,27 @@ public class MyNexTripActivity extends Activity
 				
 
 		}
-
-	    
-	    
-		public static final int menu_SETTINGS   = Menu.FIRST + 1;
-
-		@Override
-		public boolean onCreateOptionsMenu(Menu menu) 
-		{
-			menu.add(menu_SETTINGS, menu_SETTINGS, menu.size(), getString(R.string.settings)).setIcon(android.R.drawable.ic_menu_preferences);
-			return true;
-		}
-
-		@Override
-		public boolean onOptionsItemSelected(MenuItem item) 
-		{
-			switch (item.getItemId()) 
-			{
-				case menu_SETTINGS:
-					Intent settingsActivity = new Intent(getBaseContext(), Preferences.class);
-					startActivity(settingsActivity);
-					return true;
-			}
-			return super.onOptionsItemSelected(item);
-		}
+//		public static final int menu_SETTINGS   = Menu.FIRST + 1;
+//
+//		@Override
+//		public boolean onCreateOptionsMenu(Menu menu) 
+//		{
+//			menu.add(menu_SETTINGS, menu_SETTINGS, menu.size(), getString(R.string.settings)).setIcon(android.R.drawable.ic_menu_preferences);
+//			return true;
+//		}
+//
+//		@Override
+//		public boolean onOptionsItemSelected(MenuItem item) 
+//		{
+//			switch (item.getItemId()) 
+//			{
+//				case menu_SETTINGS:
+//					Intent settingsActivity = new Intent(getBaseContext(), Preferences.class);
+//					startActivity(settingsActivity);
+//					return true;
+//			}
+//			return super.onOptionsItemSelected(item);
+//		}
 		private void doStopNumber(EditText stopnumber)
 		{
 	    	try

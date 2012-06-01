@@ -16,8 +16,6 @@ public abstract class BaseListActivity extends ListActivity
 	public static final int menu_REFRESH 	= Menu.FIRST + 1;
 	public static final int menu_HOME		= Menu.FIRST + 2;
 	public static final int menu_SETTINGS   = Menu.FIRST + 3;
-	public static final int menu_ADD		= Menu.FIRST + 4;
-	public static final int menu_DELETE 	= Menu.FIRST + 5;
 
 	private ProgressBar progressBar; 
 	private TextView title;
@@ -43,7 +41,7 @@ public abstract class BaseListActivity extends ListActivity
 	public boolean onCreateOptionsMenu(Menu menu) 
 	{
 		menu.add(menu_REFRESH, menu_REFRESH, menu.size(), getString(R.string.refresh)).setIcon(R.drawable.ic_menu_refresh);
-		menu.add(menu_SETTINGS, menu_SETTINGS, menu.size(), getString(R.string.settings)).setIcon(android.R.drawable.ic_menu_preferences);
+//		menu.add(menu_SETTINGS, menu_SETTINGS, menu.size(), getString(R.string.settings)).setIcon(android.R.drawable.ic_menu_preferences);
 		menu.add(menu_HOME, menu_HOME, menu.size(), getString(R.string.home)).setIcon(R.drawable.ic_menu_home);
 		return true;
 	}

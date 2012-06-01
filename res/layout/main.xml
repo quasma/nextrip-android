@@ -52,8 +52,8 @@
         	android:maxLines="1"
         	android:typeface="sans"/>
     </RelativeLayout>
-    
-	<Button 
+
+		<Button 
 	    android:id="@+id/about"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
