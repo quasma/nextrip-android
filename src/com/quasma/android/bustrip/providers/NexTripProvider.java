@@ -7,6 +7,7 @@ import com.quasma.android.bustrip.providers.FavoriteProviderContract.FavoriteTab
 import com.quasma.android.bustrip.providers.RouteProviderContract.RouteTable;
 import com.quasma.android.bustrip.providers.StopNumberProviderContract.StopNumberTable;
 import com.quasma.android.bustrip.providers.StopProviderContract.StopTable;
+import com.quasma.android.bustrip.service.NexTripServiceHelper;
 
 import android.content.ContentProvider;
 import android.content.ContentUris;
@@ -86,7 +87,7 @@ public class NexTripProvider extends ContentProvider
 	@Override
 	public boolean onCreate() 
 	{
-		this.dbHelper = new ProviderDbHelper(this.getContext());
+		this.dbHelper = new ProviderDbHelper(getContext());
 		return true;
 	}
 
@@ -148,7 +149,9 @@ public class NexTripProvider extends ContentProvider
 			case STOP:
 				try
 				{
-					newRowId = db.insertWithOnConflict(StopTable.TABLE_NAME, null, values, SQLiteDatabase.CONFLICT_FAIL);
+					newRowId = db.insertOrThrow(StopTable.TABLE_NAME, null, values);
+							
+//					newRowId = db.insertWithOnConflict(StopTable.TABLE_NAME, null, values, SQLiteDatabase.CONFLICT_FAIL);
 				}
 				catch (SQLException e)
 				{
@@ -180,7 +183,8 @@ public class NexTripProvider extends ContentProvider
 			case STOPNUMBER:
 				try
 				{
-					newRowId = db.insertWithOnConflict(StopNumberTable.TABLE_NAME, null, values, SQLiteDatabase.CONFLICT_FAIL);
+					newRowId = db.insertOrThrow(StopNumberTable.TABLE_NAME, null, values);
+//					newRowId = db.insertWithOnConflict(StopNumberTable.TABLE_NAME, null, values, SQLiteDatabase.CONFLICT_FAIL);
 				}
 				catch (SQLException e)
 				{
@@ -385,7 +389,8 @@ public class NexTripProvider extends ContentProvider
 			case ROUTE:
 				try
 				{
-					newRowId = writableDb.insertWithOnConflict(RouteTable.TABLE_NAME, null, values, SQLiteDatabase.CONFLICT_FAIL);
+//					newRowId = writableDb.insertWithOnConflict(RouteTable.TABLE_NAME, null, values, SQLiteDatabase.CONFLICT_FAIL);
+					newRowId = writableDb.insertOrThrow(RouteTable.TABLE_NAME, null, values);
 				}
 				catch (SQLException e)
 				{
@@ -398,7 +403,8 @@ public class NexTripProvider extends ContentProvider
 			case DIRECTION:
 				try
 				{
-					newRowId = writableDb.insertWithOnConflict(DirectionTable.TABLE_NAME, null, values, SQLiteDatabase.CONFLICT_FAIL);
+//					newRowId = writableDb.insertWithOnConflict(DirectionTable.TABLE_NAME, null, values, SQLiteDatabase.CONFLICT_FAIL);
+					newRowId = writableDb.insertOrThrow(DirectionTable.TABLE_NAME, null, values);
 				}
 				catch (SQLException e)
 				{
@@ -412,7 +418,8 @@ public class NexTripProvider extends ContentProvider
 				
 				try
 				{
-					newRowId = writableDb.insertWithOnConflict(StopTable.TABLE_NAME, null, values, SQLiteDatabase.CONFLICT_FAIL);
+//					newRowId = writableDb.insertWithOnConflict(StopTable.TABLE_NAME, null, values, SQLiteDatabase.CONFLICT_FAIL);
+					newRowId = writableDb.insertOrThrow(StopTable.TABLE_NAME, null, values);
 				}
 				catch (SQLException e)
 				{
@@ -425,7 +432,8 @@ public class NexTripProvider extends ContentProvider
 			case STOPNUMBER:
 				try
 				{
-					newRowId = writableDb.insertWithOnConflict(StopNumberTable.TABLE_NAME, null, values, SQLiteDatabase.CONFLICT_FAIL);
+//					newRowId = writableDb.insertWithOnConflict(StopNumberTable.TABLE_NAME, null, values, SQLiteDatabase.CONFLICT_FAIL);
+					newRowId = writableDb.insertOrThrow(StopNumberTable.TABLE_NAME, null, values);
 				}
 				catch (SQLException e)
 				{

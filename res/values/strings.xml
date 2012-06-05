@@ -27,5 +27,5 @@
     <string name="about">About</string>
     <string name="stopnumberhint">Stop Number</string>
     <string name="stopnumber">Stop Number {0}</string>    
-    
+	<string name="typetofilter">type to filter</string>    
 </resources>

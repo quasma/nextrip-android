@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout  xmlns:android="http://schemas.android.com/apk/res/android"
+        android:background="#808080"
+		android:layout_width="fill_parent"
+    	android:layout_height="wrap_content"
+    	android:paddingBottom="5dip"
+    	android:fitsSystemWindows="true">
+    	<LinearLayout
+    		android:layout_width="fill_parent"
+    		android:layout_height="wrap_content"
+    		android:layout_alignParentLeft="true"
+    		android:paddingLeft="5dip"
+    		android:paddingRight="5dip"
+    		android:layout_gravity="top"
+    		android:orientation="vertical" >
+    		<TextView
+        		android:id="@+id/trip_route"
+        		android:layout_width="fill_parent"
+        		android:layout_height="wrap_content"
+        		android:singleLine="true"
+        		android:textColor="#FFFFFF"
+        		android:typeface="sans"/>
+    		<TextView
+        		android:id="@+id/trip_direction"
+        		android:layout_width="fill_parent"
+        		android:layout_height="wrap_content"
+        		android:singleLine="true"
+        		android:textColor="#FFFFFF"
+        		android:typeface="sans"/>
+    		<TextView
+        		android:id="@+id/trip_stop"
+        		android:layout_width="fill_parent"
+        		android:layout_height="wrap_content"
+        		android:singleLine="true"
+        		android:textColor="#FFFFFF"
+        		android:typeface="sans"/>
+    	</LinearLayout>
+
+	    <CheckBox
+        	android:id="@+id/favorite" 
+        	style="?android:attr/starStyle"
+        	android:layout_width="wrap_content"
+        	android:layout_height="wrap_content"
+        	android:visibility="visible"
+        	android:paddingRight="5dip"
+			android:layout_centerVertical="true"        
+        	android:layout_alignParentRight="true"/>
+    
+    	<ProgressBar
+        	android:id="@android:id/progress"
+        	style="?android:attr/progressBarStyleSmallTitle"
+        	android:layout_width="wrap_content"
+        	android:layout_height="wrap_content"
+        	android:layout_toLeftOf="@id/favorite"
+        	android:layout_centerVertical="true"
+        	android:visibility="invisible"
+        	android:indeterminateOnly="true"/>
+
+	</RelativeLayout>
