@@ -17,6 +17,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.database.Cursor;
+import android.os.Build;
 import android.os.Bundle;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
@@ -46,6 +47,7 @@ public class TripActivity extends BaseListActivity
 	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.trips);
+			
 		setProgressBar((ProgressBar) findViewById(android.R.id.progress));
 
 		route 		= (TextView) findViewById(R.id.trip_route);

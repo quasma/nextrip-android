@@ -12,6 +12,7 @@ import com.quasma.android.bustrip.service.NexTripService;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.text.Html;
 import android.view.Menu;
@@ -29,7 +30,8 @@ public class MyNexTripActivity extends Activity
 	   public void onCreate(Bundle savedInstanceState) 
 	   {
 	        super.onCreate(savedInstanceState);
-	        setContentView(R.layout.main);
+
+        	setContentView(R.layout.main);
 
 	        	((ImageButton)findViewById(R.id.findstop)).setOnClickListener(new OnClickListener() 
 				{

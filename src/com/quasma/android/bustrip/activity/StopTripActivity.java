@@ -14,6 +14,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.os.Build;
 import android.os.Bundle;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
@@ -35,7 +36,7 @@ public class StopTripActivity extends BaseListActivity
 	{
 		super.onCreate(savedInstanceState);
 		super.setUp(R.layout.stoptrips, true);
-
+			
 		this.requestReceiver = new StopTripReceiver();
 		favoriteProcessor = new FavoriteProcessor(this);
 		favorite = (CheckBox) findViewById(R.id.favorite);

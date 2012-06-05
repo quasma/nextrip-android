@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:layout_marginLeft="15dip"
+    android:layout_marginRight="15dip"
+    android:orientation="vertical" >
+
+	<Button 
+	    android:id="@+id/routelisting"
+        android:layout_width="fill_parent"
+    	android:paddingTop="5dip"
+    	android:textSize="20sp"
+        android:layout_height="wrap_content"
+        android:typeface="sans"
+        android:text="@string/routelisting"/>
+
+	<Button 
+	    android:id="@+id/favoritelisting"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+    	android:paddingTop="5dip"
+    	android:textSize="20sp"
+        android:typeface="sans"
+        android:text="@string/favoritelisting"/>
+
+	<RelativeLayout
+    	android:layout_width="fill_parent"
+    	android:layout_height="wrap_content"
+    	android:paddingTop="5dip"
+    	android:orientation="vertical">
+    
+    	<ImageButton 
+        	android:id="@+id/findstop"
+        	android:src="@drawable/ic_menu_search"
+        	android:layout_alignParentRight="true"
+        	android:layout_width="wrap_content"
+        	android:layout_height="wrap_content"
+        	android:text="@string/search" />
+
+    	<EditText
+    	    android:id="@+id/stopnumber"
+    	    android:layout_width="wrap_content"
+    	    android:layout_height="wrap_content"
+    	    android:layout_alignParentLeft="true"
+    	    android:layout_alignTop="@+id/findstop"
+    	    android:ems="10"
+    	    android:hint="@string/stopnumberhint"
+    	    android:inputType="number"
+    	    android:maxLines="1"
+    	    android:textSize="20sp"
+    	    android:typeface="sans" >
+
+    	</EditText>
+
+    </RelativeLayout>
+
+		<Button 
+	    android:id="@+id/about"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+    	android:paddingTop="5dip"
+    	android:textSize="20sp"
+        android:typeface="sans"
+        android:text="@string/about"/>
+
+</LinearLayout>

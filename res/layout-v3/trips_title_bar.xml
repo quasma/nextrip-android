@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout  xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="#808080"
+	android:layout_width="wrap_content"
+   	android:layout_height="wrap_content"
+   	android:paddingBottom="5dip"
+   	android:orientation="vertical"
+   	android:fitsSystemWindows="true">
+   	<LinearLayout
+   	    android:id="@+id/left_layout"
+   	    android:layout_width="fill_parent"
+   	    android:layout_height="wrap_content"
+   	    android:orientation="vertical"
+   	    android:gravity="left">
+   		<TextView
+    		android:id="@+id/trip_route"
+    		android:layout_width="fill_parent"
+    		android:layout_height="wrap_content"
+    		android:singleLine="true"
+    		android:textColor="#FFFFFF"
+    		android:typeface="sans"/>
+  		<TextView
+      		android:id="@+id/trip_direction"
+      		android:layout_width="fill_parent"
+      		android:layout_height="wrap_content"
+      		android:singleLine="true"
+      		android:textColor="#FFFFFF"
+      		android:typeface="sans"/>
+   		<TextView
+       		android:id="@+id/trip_stop"
+       		android:layout_width="fill_parent"
+       		android:layout_height="wrap_content"
+       		android:singleLine="true"
+       		android:textColor="#FFFFFF"
+       		android:typeface="sans"/>
+  	</LinearLayout>
+  	
+   	<ProgressBar
+       	android:id="@android:id/progress"
+       	style="?android:attr/progressBarStyleSmallTitle"
+       	android:layout_width="wrap_content"
+       	android:layout_height="wrap_content"
+       	android:layout_alignParentRight="true"
+       	android:paddingRight="5dip"
+       	android:visibility="invisible"
+       	android:indeterminateOnly="true"/>
+ 	
+   	<CheckBox
+       	android:id="@+id/favorite" 
+       	style="?android:attr/starStyle"
+       	android:layout_width="wrap_content"
+       	android:layout_height="wrap_content"
+       	android:layout_alignParentRight="true"
+       	android:layout_alignBaseline="@id/trip_stop"
+       	android:visibility="visible"
+       	android:paddingRight="5dip"/>
+
+</RelativeLayout>

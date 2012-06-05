@@ -11,8 +11,14 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.database.Cursor;
+import android.os.Build;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
+import android.widget.EditText;
+import android.widget.Filter.FilterListener;
+import android.widget.FilterQueryProvider;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -22,6 +28,9 @@ public class RouteActivity extends BaseListActivity
 	private BroadcastReceiver requestReceiver;
 	private NexTripServiceHelper nexTripServiceHelper;
 	private IntentFilter filter = new IntentFilter(NexTripServiceHelper.ACTION_REQUEST_RESULT);
+	private RouteCursorAdapter adapter;
+	private EditText filterText;
+	private Cursor listCursor;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) 
@@ -33,16 +42,56 @@ public class RouteActivity extends BaseListActivity
 
 		setTitle(getString(R.string.choose_route));
 		
-		Cursor cursor = getContentResolver().query(RouteList.CONTENT_URI,
+		listCursor = getContentResolver().query(RouteList.CONTENT_URI,
 				RouteTable.DISPLAY_COLUMNS, null, null, RouteTable.ROUTE);
 
-		startManagingCursor(cursor);
+		startManagingCursor(listCursor);
 
-		RouteCursorAdapter mAdapter = new RouteCursorAdapter(this, cursor);
-
-		setListAdapter(mAdapter);
-
+		adapter = new RouteCursorAdapter(this, listCursor);
+		setListAdapter(adapter);
+		filterText = (EditText) findViewById(R.id.search_box);
+		filterText.addTextChangedListener(filterTextWatcher);
 	}
+	
+	private TextWatcher filterTextWatcher = new TextWatcher()
+	{
+		public void afterTextChanged(Editable s) {}
+
+	    public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+
+	    public void onTextChanged(CharSequence s, int start, int before, int count) 
+	    {
+	    	final Cursor oldCursor = adapter.getCursor();
+	    	adapter.setFilterQueryProvider(filterQueryProvider);
+	    	
+	    	adapter.getFilter().filter(s, new FilterListener() 
+	    	{
+		        public void onFilterComplete(int count) 
+		        {
+		            stopManagingCursor(oldCursor);
+		            final Cursor newCursor = adapter.getCursor();
+		            startManagingCursor(newCursor);
+		            if (oldCursor != null && !oldCursor.isClosed()) 
+		                oldCursor.close();
+		        }
+	    		
+	    	});
+	    }
+	};
+	
+	private FilterQueryProvider filterQueryProvider = new FilterQueryProvider() 
+	{
+	    public Cursor runQuery(CharSequence constraint) 
+	    {
+	    	if (constraint.toString().length() == 0)
+	    		return getContentResolver().query(RouteList.CONTENT_URI,
+	    				RouteTable.DISPLAY_COLUMNS, null, null, RouteTable.ROUTE);
+	    	else
+	    		return getContentResolver().query(RouteList.CONTENT_URI,
+					RouteTable.DISPLAY_COLUMNS, RouteTable.DESC + " LIKE ?", new String[] { "%" + constraint.toString() + "%" }, RouteTable.ROUTE);
+	    }
+	};
+
 	@Override
 	protected void onResume() 
 	{

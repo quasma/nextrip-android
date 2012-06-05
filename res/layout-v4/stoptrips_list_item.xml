@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <TwoLineListItem 
+        android:id="@+id/route_info" 
+        android:gravity="left"
+    	android:layout_width="fill_parent"
+    	android:layout_height="fill_parent"
+    	android:paddingLeft="5dip"
+    	android:mode="twoLine">
+    
+        <TextView android:id="@+id/route"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+        		android:typeface="sans"
+                android:textAppearance="?android:attr/textAppearanceSmall"/>
+                
+        <TextView android:id="@+id/description"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_below="@id/route"
+        		android:typeface="sans"
+                android:textAppearance="?android:attr/textAppearanceSmall"/>
+
+	</TwoLineListItem>
+	    
+    <TextView
+        android:id="@+id/time"
+        android:gravity="right"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:paddingRight="5dip"
+        android:layout_alignRight="@id/route_info"
+        android:textSize="18dip"
+        android:typeface="sans"/>
+    
+</RelativeLayout>

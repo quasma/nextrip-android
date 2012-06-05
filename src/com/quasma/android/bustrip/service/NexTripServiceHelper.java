@@ -3,6 +3,8 @@ package com.quasma.android.bustrip.service;
 import java.util.HashMap;
 import java.util.UUID;
 
+import com.quasma.android.bustrip.providers.ProviderDbHelper;
+
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
