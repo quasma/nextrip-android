@@ -10,18 +10,20 @@ import android.content.Context;
 public class RouteRestMethod extends AbstractRestMethod<RouteList>
 {
 	private Context context;
+	private URI uri;
 	
-	private static final URI ROUTE_URI = URI.create("http://svc.metrotransit.org/NexTrip/Routes?format=json");
+	private static final String ROUTE_URI = "/NexTrip/Routes";
 	
 	public RouteRestMethod(Context context)
 	{
 		this.context = context.getApplicationContext();
+		this.uri = buildURI(ROUTE_URI);
 	}
 
 	@Override
 	protected Request buildRequest() 
 	{	
-		Request request = new Request(ROUTE_URI);
+		Request request = new Request(uri);
 		return request;
 	}
 

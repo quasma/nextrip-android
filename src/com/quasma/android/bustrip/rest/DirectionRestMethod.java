@@ -13,13 +13,13 @@ public class DirectionRestMethod extends AbstractRestMethod<DirectionList>
 	private URI uri;
 	
 	private static String ROUTE_ARG = "{ROUTE}";
-	private static String DIRECTION_URI = "http://svc.metrotransit.org/NexTrip/Directions/" + ROUTE_ARG + "?format=json";
+	private static String DIRECTION_URI = "/NexTrip/Directions/" + ROUTE_ARG;
 
 	public DirectionRestMethod(Context context, String route)
 	{
 		this.context = context.getApplicationContext();
 		this.route = route;
-		this.uri = URI.create(DIRECTION_URI.replace("{ROUTE}", route));
+		this.uri = buildURI(DIRECTION_URI.replace("{ROUTE}", route));
 	}
 
 	@Override

@@ -1,5 +1,7 @@
 package com.quasma.android.bustrip.rest;
 
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.List;
 import java.util.Map;
 
@@ -10,7 +12,10 @@ import android.content.Context;
 public abstract class AbstractRestMethod<T extends Resource> implements RestMethod<T> 
 {
 	private static final String DEFAULT_ENCODING = "UTF-8";
-
+	private static final String HTTP = "http";
+	private static final String SERVER = "svc.metrotransit.org";
+	private static final String FORMAT = "format=json";
+	
 	public RestMethodResult<T> execute() 
 	{
 		Request request = buildRequest();
@@ -18,6 +23,18 @@ public abstract class AbstractRestMethod<T extends Resource> implements RestMeth
 		return buildResult(response);
 	}
 	
+	public URI buildURI(String path)
+	{
+		try
+		{
+			return new URI(HTTP, SERVER, path, FORMAT, null);
+		}
+		catch (URISyntaxException e)
+		{
+			throw new IllegalArgumentException(e);
+		}
+	}
+
 	protected abstract Context getContext();
 
 	protected RestMethodResult<T> buildResult(Response response) 

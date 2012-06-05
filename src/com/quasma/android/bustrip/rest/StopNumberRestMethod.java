@@ -9,7 +9,7 @@ import android.content.Context;
 public class StopNumberRestMethod extends AbstractRestMethod<StopTripList>
 {
 	private static String STOP_ARG = "{STOPID}";
-	private static String STOP_URI = "http://svc.metrotransit.org/NexTrip/" + STOP_ARG + "?format=json";
+	private static String STOP_URI = "/NexTrip/" + STOP_ARG;
 
 	private Context context;
 	private URI uri;
@@ -19,7 +19,7 @@ public class StopNumberRestMethod extends AbstractRestMethod<StopTripList>
 	{
 		this.context = context.getApplicationContext();
 		this.stopNumber = stopnumber;
-		this.uri = URI.create(STOP_URI.replace(STOP_ARG, stopnumber));
+		this.uri = buildURI(STOP_URI.replace(STOP_ARG, stopnumber));
 	}
 
 	@Override

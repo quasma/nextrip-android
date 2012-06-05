@@ -11,7 +11,9 @@ public class TripRestMethod extends AbstractRestMethod<TripList>
 	private static String ROUTE_ARG = "{ROUTE}";
 	private static String DIRECTION_ARG = "{DIRECTION}";
 	private static String STOP_ARG = "{STOP}";
-	private static String STOP_URI = "http://svc.metrotransit.org/NexTrip/" + ROUTE_ARG + "/" + DIRECTION_ARG + "/" + STOP_ARG + "?format=json";
+	
+	
+	private static String STOP_URI = "/NexTrip/" + ROUTE_ARG + "/" + DIRECTION_ARG + "/" + STOP_ARG;
 
 	private Context context;
 	private URI uri;
@@ -22,7 +24,7 @@ public class TripRestMethod extends AbstractRestMethod<TripList>
 	public TripRestMethod(Context context, String route, String direction, String stop)
 	{
 		this.context = context.getApplicationContext();
-		this.uri = URI.create(STOP_URI.replace(ROUTE_ARG, route).replace(DIRECTION_ARG, direction).replace(STOP_ARG, stop));;
+		this.uri = buildURI(STOP_URI.replace(ROUTE_ARG, route).replace(DIRECTION_ARG, direction).replace(STOP_ARG, stop));;
 		this.route = route;
 		this.direction = direction;
 		this.stop = stop;
