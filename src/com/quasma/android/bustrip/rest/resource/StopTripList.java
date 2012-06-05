@@ -38,7 +38,8 @@ public class StopTripList implements Resource, Parcelable
 					jsonArray.getJSONObject(i).getString("Description"),
 					jsonArray.getJSONObject(i).getBoolean("Actual"),
 					jsonArray.getJSONObject(i).getString("DepartureText"),
-					jsonArray.getJSONObject(i).getString("DepartureTime")));
+					jsonArray.getJSONObject(i).getString("DepartureTime"),
+					jsonArray.getJSONObject(i).getString("Terminal")));
 		
 	}
 

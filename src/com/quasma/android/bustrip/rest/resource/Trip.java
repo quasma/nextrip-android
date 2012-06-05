@@ -7,6 +7,7 @@ public class Trip implements Parcelable
 {
 	private boolean actual;
 	private String route;
+	private String terminal;
 	private String direction;
 	private String description;
 	private String departure;
@@ -20,9 +21,10 @@ public class Trip implements Parcelable
 		description = parcel.readString();
 		departure = parcel.readString();
 		departureTime = parcel.readString();
+		terminal = parcel.readString();
 	}
 	
-	public Trip(String route, String direction, String description, boolean actual, String departure, String departureTime)
+	public Trip(String route, String direction, String description, boolean actual, String departure, String departureTime, String terminal)
 	{
 		this.route = route;
 		this.direction = direction;
@@ -30,6 +32,12 @@ public class Trip implements Parcelable
 		this.departure = departure;
 		this.departureTime = departureTime;
 		this.actual = actual;
+		this.terminal = terminal;
+	}
+	
+	public String getTerminal()
+	{
+		return terminal;
 	}
 	
 	public String getRoute()
@@ -69,6 +77,7 @@ public class Trip implements Parcelable
 		dest.writeString(description);
 		dest.writeString(departure);
 		dest.writeString(departureTime);
+		dest.writeString(terminal);
 	}
 	
 	public static final Parcelable.Creator<Trip> CREATOR = new Parcelable.Creator<Trip>() 

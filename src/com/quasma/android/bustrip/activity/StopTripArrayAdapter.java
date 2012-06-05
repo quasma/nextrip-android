@@ -40,7 +40,8 @@ public class StopTripArrayAdapter extends ArrayAdapter
 		}			
 		
 		((TextView) listItemView.findViewById(R.id.route)).setText(
-				MessageFormat.format(context.getString(R.string.RouteNumber), values.get(position).getRoute()));
+				MessageFormat.format(context.getString(R.string.RouteNumber), 
+						values.get(position).getRoute() + values.get(position).getTerminal()));
 		
 		((TextView) listItemView.findViewById(R.id.description)).setText(values.get(position).getDescription());
 		TextView departure = (TextView) listItemView.findViewById(R.id.time);

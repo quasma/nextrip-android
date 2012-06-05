@@ -1,5 +1,6 @@
 package com.quasma.android.bustrip.activity;
 
+import java.text.MessageFormat;
 import java.util.List;
 
 import com.quasma.android.bustrip.R;
@@ -27,23 +28,25 @@ public class TripArrayAdapter extends ArrayAdapter
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) 
 	{
-		LayoutInflater inflater = (LayoutInflater) context
-			.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
- 
+		View listItemView;
+		
 		if (values.get(position).isActual())
 		{
-			View rowView = inflater.inflate(R.layout.enroute_list_item, parent, false);
-			TextView textView = (TextView) rowView.findViewById(R.id.text);
-			textView.setText(values.get(position).getDeparture());
-			return rowView;
+			listItemView =  LayoutInflater.from(context).inflate(R.layout.stoptrips_actual_list_item, parent, false);
 		}			
 		else
 		{
-			View rowView = inflater.inflate(R.layout.time_list_item, parent, false);
-			TextView textView = (TextView) rowView.findViewById(R.id.text);
-			textView.setText(values.get(position).getDeparture());
-			return rowView;
+			listItemView =  LayoutInflater.from(context).inflate(R.layout.stoptrips_list_item, parent, false);
 		}			
-
+		
+		((TextView) listItemView.findViewById(R.id.route)).setText(
+				MessageFormat.format(context.getString(R.string.RouteNumber), 
+						values.get(position).getRoute() + values.get(position).getTerminal()));
+		
+		((TextView) listItemView.findViewById(R.id.description)).setText(values.get(position).getDescription());
+		TextView departure = (TextView) listItemView.findViewById(R.id.time);
+		departure.setText(values.get(position).getDeparture());
+		return listItemView;
 	}
+
 }
