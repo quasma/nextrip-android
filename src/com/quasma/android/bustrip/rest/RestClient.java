@@ -45,9 +45,8 @@ public class RestClient
     					}
     				}
     			}
-    			Object content = conn.getContent();
-    
-    			if (content instanceof InputStream) 
+    			InputStream is = conn.getInputStream();
+    			if (is != null)
     			{
     				BufferedInputStream in = new BufferedInputStream(conn.getInputStream());
     				byte[] body = readStream(in);
