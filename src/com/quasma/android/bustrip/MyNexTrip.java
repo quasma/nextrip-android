@@ -9,5 +9,4 @@ public class MyNexTrip extends Application
 	{
 		super.onCreate();
 	}
-	
 }

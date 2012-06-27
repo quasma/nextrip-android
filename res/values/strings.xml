@@ -27,5 +27,7 @@
     <string name="about">About</string>
     <string name="stopnumberhint">Stop Number</string>
     <string name="stopnumber">Stop Number {0}</string>    
-	<string name="typetofilter">type to filter</string>    
+	<string name="typetofilter">type to filter</string>
+	<string name="showfavorites">Show Favorites</string>
+	<string name="summary_showfavorites_preference">Show favorites on start up</string>	
 </resources>

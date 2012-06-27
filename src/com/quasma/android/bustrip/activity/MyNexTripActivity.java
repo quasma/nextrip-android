@@ -12,8 +12,9 @@ import com.quasma.android.bustrip.service.NexTripService;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Intent;
-import android.os.Build;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.text.Html;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -26,10 +27,25 @@ import android.widget.TextView;
 
 public class MyNexTripActivity extends Activity
 {
+	
+	public boolean showFavorites(Activity context)
+	{
+   	 	SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context.getBaseContext());
+   	 	return prefs.getBoolean("showfavoritesonstartup", true);
+	}
+
 	   @Override
 	   public void onCreate(Bundle savedInstanceState) 
 	   {
 	        super.onCreate(savedInstanceState);
+	        if (getIntent().getCategories() != null
+	        &&  getIntent().getCategories().contains(Intent.CATEGORY_LAUNCHER)
+			&&  showFavorites(this))
+			{
+				Intent intent;
+			    intent = new Intent(this, FavoriteActivity.class);
+			    startActivity( intent );
+			}	
 
         	setContentView(R.layout.main);
 
@@ -71,27 +87,27 @@ public class MyNexTripActivity extends Activity
 				
 
 		}
-//		public static final int menu_SETTINGS   = Menu.FIRST + 1;
-//
-//		@Override
-//		public boolean onCreateOptionsMenu(Menu menu) 
-//		{
-//			menu.add(menu_SETTINGS, menu_SETTINGS, menu.size(), getString(R.string.settings)).setIcon(android.R.drawable.ic_menu_preferences);
-//			return true;
-//		}
-//
-//		@Override
-//		public boolean onOptionsItemSelected(MenuItem item) 
-//		{
-//			switch (item.getItemId()) 
-//			{
-//				case menu_SETTINGS:
-//					Intent settingsActivity = new Intent(getBaseContext(), Preferences.class);
-//					startActivity(settingsActivity);
-//					return true;
-//			}
-//			return super.onOptionsItemSelected(item);
-//		}
+		public static final int menu_SETTINGS   = Menu.FIRST + 1;
+
+		@Override
+		public boolean onCreateOptionsMenu(Menu menu) 
+		{
+			menu.add(menu_SETTINGS, menu_SETTINGS, menu.size(), getString(R.string.settings)).setIcon(android.R.drawable.ic_menu_preferences);
+			return true;
+		}
+
+		@Override
+		public boolean onOptionsItemSelected(MenuItem item) 
+		{
+			switch (item.getItemId()) 
+			{
+				case menu_SETTINGS:
+					Intent settingsActivity = new Intent(getBaseContext(), Preferences.class);
+					startActivity(settingsActivity);
+					return true;
+			}
+			return super.onOptionsItemSelected(item);
+		}
 		private void doStopNumber(EditText stopnumber)
 		{
 	    	try
