@@ -180,6 +180,7 @@ public class RouteActivity extends BaseListActivity
 		String route = cursor.getString(cursor.getColumnIndex(RouteTable.ROUTE));
 		String title = cursor.getString(cursor.getColumnIndex(RouteTable.DESC));
 		Intent intent = new Intent();
+        intent.setFlags(intent.getFlags() | Intent.FLAG_ACTIVITY_NO_HISTORY);
 		intent.putExtra(NexTripService.ROUTE_EXTRA, route);
 		intent.putExtra(NexTripService.TITLE, title);
 	    intent.setClass(this, DirectionActivity.class);

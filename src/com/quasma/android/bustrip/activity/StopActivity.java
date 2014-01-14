@@ -139,6 +139,7 @@ public class StopActivity extends BaseListActivity
 		String direction = cursor.getString(cursor.getColumnIndex(StopTable.DIRECTION));
 		String stop = cursor.getString(cursor.getColumnIndex(StopTable.STOP));
 		Intent intent = new Intent();
+        intent.setFlags(intent.getFlags() | Intent.FLAG_ACTIVITY_NO_HISTORY);
 		intent.putExtra(NexTripService.ROUTE_EXTRA, route);
 		intent.putExtra(NexTripService.DIRECTION_EXTRA, direction);
 		intent.putExtra(NexTripService.STOP_EXTRA, stop);
