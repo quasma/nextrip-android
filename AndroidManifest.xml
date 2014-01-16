@@ -2,7 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.quasma.android.bustrip"
     android:versionCode="30"
-    android:versionName="4.1.0" >
+    android:versionName="4.1.0"
+    android:installLocation="auto" >
 
     <uses-sdk android:minSdkVersion="3"/>
 
