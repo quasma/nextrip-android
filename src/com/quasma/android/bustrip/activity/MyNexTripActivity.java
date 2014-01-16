@@ -115,7 +115,6 @@ public class MyNexTripActivity extends Activity
 		    	if (Integer.parseInt(stopnumber.getText().toString()) > 0)
 		    	{
     		        Intent intent = new Intent();
-    		        intent.setFlags(intent.getFlags() | Intent.FLAG_ACTIVITY_NO_HISTORY);
     				intent.putExtra(NexTripService.STOPNUMBER_EXTRA, stopnumber.getText().toString());
     		        intent.setClass(this, (Class) StopTripActivity.class);
     		        startActivity(intent);
@@ -127,7 +126,6 @@ public class MyNexTripActivity extends Activity
 		private void doRouteList()
 		{
 	        Intent intent = new Intent();
-	        intent.setFlags(intent.getFlags() | Intent.FLAG_ACTIVITY_NO_HISTORY);
 	        intent.setClass(this, RouteActivity.class);
 	        startActivity(intent);
 		}
@@ -135,7 +133,6 @@ public class MyNexTripActivity extends Activity
 		private void doFavorites()
 		{
 	        Intent intent = new Intent();
-	        intent.setFlags(intent.getFlags() | Intent.FLAG_ACTIVITY_NO_HISTORY);
 	        intent.setClass(this, FavoriteActivity.class);
 	        startActivity(intent);
 		}

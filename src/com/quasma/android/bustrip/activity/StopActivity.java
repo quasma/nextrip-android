@@ -11,13 +11,12 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.database.Cursor;
-import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.TextView;
 
-public class StopActivity extends BaseListActivity 
+public class StopActivity extends BaseListActivity
 {
 	private Long requestId;
 	private BroadcastReceiver requestReceiver;
@@ -139,7 +138,6 @@ public class StopActivity extends BaseListActivity
 		String direction = cursor.getString(cursor.getColumnIndex(StopTable.DIRECTION));
 		String stop = cursor.getString(cursor.getColumnIndex(StopTable.STOP));
 		Intent intent = new Intent();
-        intent.setFlags(intent.getFlags() | Intent.FLAG_ACTIVITY_NO_HISTORY);
 		intent.putExtra(NexTripService.ROUTE_EXTRA, route);
 		intent.putExtra(NexTripService.DIRECTION_EXTRA, direction);
 		intent.putExtra(NexTripService.STOP_EXTRA, stop);

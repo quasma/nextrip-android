@@ -6,18 +6,13 @@ import com.quasma.android.bustrip.rest.resource.DirectionList;
 import com.quasma.android.bustrip.service.NexTripService;
 import com.quasma.android.bustrip.service.NexTripServiceHelper;
 
-import android.app.Activity;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.database.Cursor;
 import android.os.Bundle;
-import android.view.GestureDetector;
-import android.view.KeyEvent;
-import android.view.MotionEvent;
 import android.view.View;
-import android.view.GestureDetector.SimpleOnGestureListener;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -140,7 +135,6 @@ public class DirectionActivity extends BaseListActivity
 		String direction = cursor.getString(cursor.getColumnIndex(DirectionTable.DIRECTION));
 		String desc = cursor.getString(cursor.getColumnIndex(DirectionTable.DESC));
 		Intent intent = new Intent();
-        intent.setFlags(intent.getFlags() | Intent.FLAG_ACTIVITY_NO_HISTORY);
 		intent.putExtra(NexTripService.ROUTE_EXTRA, route);
 		intent.putExtra(NexTripService.DIRECTION_EXTRA, direction);
 		intent.putExtra(NexTripService.TITLE, route + " - " + desc);
