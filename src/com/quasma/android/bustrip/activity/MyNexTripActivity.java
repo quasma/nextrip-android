@@ -10,12 +10,15 @@ import com.quasma.android.bustrip.R;
 import com.quasma.android.bustrip.service.NexTripService;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.text.Html;
+import android.text.method.LinkMovementMethod;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -139,9 +142,6 @@ public class MyNexTripActivity extends Activity
 		
 		private void doAbout()
 		{
-			Dialog about = new Dialog(this, R.style.AboutTheme);
-			about.setContentView(R.layout.about);
-			TextView view = (TextView) about.findViewById(R.id.abouttext);
 			try
 			{
 				Reader reader = new InputStreamReader(getAssets().open("about.html"));
@@ -159,12 +159,49 @@ public class MyNexTripActivity extends Activity
 				{
 					reader.close();
 				}
-				view.setText(Html.fromHtml(writer.toString()));
+				 Dialog aDialog = new AlertDialog.Builder(this, 0x00000005)
+		            .setMessage(Html.fromHtml(writer.toString()))
+		            .create();
+				 
+				 aDialog.se
+				 ((TextView) aDialog.findViewById(android.R.id.message)).setBackgroundColor(android.R.color.black);
+				 ((TextView) aDialog.findViewById(android.R.id.message)).setMovementMethod(LinkMovementMethod.getInstance());
+
+				 aDialog.show();
+				 
 			}
 			catch (IOException e)
 			{
 				e.printStackTrace();
 			}
-			about.show();
+
+			
+//			Dialog about = new Dialog(this, R.style.AboutTheme);
+//			about.setContentView(R.layout.about);
+//			TextView view = (TextView) about.findViewById(R.id.abouttext);
+//			try
+//			{
+//				Reader reader = new InputStreamReader(getAssets().open("about.html"));
+//				Writer writer = new StringWriter();
+//				char[] buffer = new char[2048];
+//				try
+//				{
+//					int n;
+//					while ((n = reader.read(buffer)) != -1)
+//					{
+//						writer.write(buffer, 0, n);
+//					}
+//				}
+//				finally
+//				{
+//					reader.close();
+//				}
+//				view.setText(Html.fromHtml(writer.toString()));
+//			}
+//			catch (IOException e)
+//			{
+//				e.printStackTrace();
+//			}
+//			about.show();
 		}
 }
