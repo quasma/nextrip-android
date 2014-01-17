@@ -11,13 +11,12 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.database.Cursor;
-import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.TextView;
 
-public class StopActivity extends BaseListActivity 
+public class StopActivity extends BaseListActivity
 {
 	private Long requestId;
 	private BroadcastReceiver requestReceiver;

@@ -11,6 +11,7 @@
     	android:paddingTop="5dip"
     	android:textSize="20sp"
     	android:typeface="sans"
+    	android:textColor="@android:color/black"
     	android:layout_alignParentLeft="true"
     	android:paddingBottom="5dip"/>
 </RelativeLayout>	

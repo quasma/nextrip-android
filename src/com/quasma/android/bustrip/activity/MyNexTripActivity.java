@@ -10,12 +10,15 @@ import com.quasma.android.bustrip.R;
 import com.quasma.android.bustrip.service.NexTripService;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.text.Html;
+import android.text.method.LinkMovementMethod;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -160,6 +163,7 @@ public class MyNexTripActivity extends Activity
 					reader.close();
 				}
 				view.setText(Html.fromHtml(writer.toString()));
+				view.setMovementMethod(LinkMovementMethod.getInstance());
 			}
 			catch (IOException e)
 			{

@@ -8,8 +8,10 @@ import com.quasma.android.bustrip.rest.resource.Trip;
 
 import android.content.Context;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.View.OnTouchListener;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
@@ -17,7 +19,7 @@ public class StopTripArrayAdapter extends ArrayAdapter
 {
 	private final Context context;
 	private final List<Trip> values;
- 
+
 	public StopTripArrayAdapter(Context context, List<Trip> values) 
 	{
 		super(context, R.layout.main, values);

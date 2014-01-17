@@ -6,8 +6,10 @@ import com.quasma.android.bustrip.providers.RouteProviderContract.RouteTable;
 import android.content.Context;
 import android.database.Cursor;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.View.OnTouchListener;
 import android.widget.CursorAdapter;
 import android.widget.TextView;
 
@@ -16,10 +18,6 @@ public class RouteCursorAdapter extends CursorAdapter
 	public RouteCursorAdapter(Context context, Cursor c) 
 	{
 		super(context, c);
-	}
-
-	static class ViewHolder {
-		TextView nameView;
 	}
 
 	@Override
@@ -31,16 +29,20 @@ public class RouteCursorAdapter extends CursorAdapter
 		ViewHolder holder = (ViewHolder) view.getTag();
 		holder.nameView.setText(name);	
 	}
+	
+	static class ViewHolder {
+		TextView nameView;
+	}
 
 	@Override
-	public View newView(Context context, Cursor cursor, ViewGroup parent) 
+	public View newView(Context context, Cursor cursor, final ViewGroup parent) 
 	{
 		View listItemView =  LayoutInflater.from(context).inflate(R.layout.selection_list_item, parent, false);
-
+		
 		ViewHolder holder = new ViewHolder();
 		holder.nameView = (TextView) listItemView.findViewById(R.id.text);
 		listItemView.setTag(holder);
-
 		return listItemView;
 	}
+
 }

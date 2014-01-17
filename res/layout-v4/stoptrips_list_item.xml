@@ -2,6 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
+    android:background="@android:color/white"
     android:orientation="vertical">
 
     <TwoLineListItem 
@@ -17,6 +18,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
         		android:typeface="sans"
+                android:textColor="@android:color/black"
                 android:textAppearance="?android:attr/textAppearanceSmall"/>
                 
         <TextView android:id="@+id/description"
@@ -24,6 +26,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
                 android:layout_below="@id/route"
+                android:textColor="@android:color/black"
         		android:typeface="sans"
                 android:textAppearance="?android:attr/textAppearanceSmall"/>
 
@@ -36,6 +39,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:paddingRight="5dip"
+		android:textColor="@android:color/black"
         android:layout_alignRight="@id/route_info"
         android:textSize="18dip"
         android:typeface="sans"/>
