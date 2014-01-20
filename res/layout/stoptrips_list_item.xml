@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
-    android:background="@android:color/white"
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
@@ -17,7 +16,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
-        		android:textColor="@android:color/black"
         		android:typeface="sans"
                 android:textAppearance="?android:attr/textAppearanceSmall"/>
                 
@@ -26,7 +24,6 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
                 android:layout_below="@id/route"
-        		android:textColor="@android:color/black"
         		android:typeface="sans"
                 android:textAppearance="?android:attr/textAppearanceSmall"/>
 
@@ -39,7 +36,6 @@
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:paddingRight="5dip"
-        android:textColor="@android:color/black"
         android:layout_alignRight="@id/route_info"
         android:textSize="18dip"
         android:typeface="sans"/>

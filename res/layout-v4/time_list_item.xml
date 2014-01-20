@@ -5,7 +5,6 @@
         android:paddingBottom="4dip"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:textColor="@android:color/black"
         android:gravity="center"
         android:typeface="sans"
     	android:textSize="18sp"/>
