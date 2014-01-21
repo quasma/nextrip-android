@@ -10,12 +10,15 @@ import com.quasma.android.bustrip.R;
 import com.quasma.android.bustrip.service.NexTripService;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.text.Html;
+import android.text.method.LinkMovementMethod;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -139,7 +142,10 @@ public class MyNexTripActivity extends Activity
 		
 		private void doAbout()
 		{
-			Dialog about = new Dialog(this, R.style.AboutTheme);
+			Dialog about = new Dialog(this, 
+					BaseListActivity.getThemePreference(this) == android.R.style.Theme_Light_NoTitleBar
+					? R.style.AboutTheme_Light : R.style.AboutTheme_Dark);
+			
 			about.setContentView(R.layout.about);
 			TextView view = (TextView) about.findViewById(R.id.abouttext);
 			try
@@ -160,6 +166,7 @@ public class MyNexTripActivity extends Activity
 					reader.close();
 				}
 				view.setText(Html.fromHtml(writer.toString()));
+				view.setMovementMethod(LinkMovementMethod.getInstance());
 			}
 			catch (IOException e)
 			{

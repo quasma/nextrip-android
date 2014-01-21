@@ -7,5 +7,10 @@
                 android:key="showfavoritesonstartup"
                 android:title="@string/showfavorites"
                 android:summary="@string/summary_showfavorites_preference" />
+        
+        <ListPreference android:entries="@array/theme_name_array" 
+            	android:entryValues="@array/theme_name_array" 
+            	android:key="theme_selector" 
+            	android:title="Select Theme"/>
             
 </PreferenceScreen>

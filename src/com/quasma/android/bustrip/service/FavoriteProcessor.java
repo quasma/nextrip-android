@@ -99,7 +99,17 @@ public class FavoriteProcessor
 				cursor.close();
 		}
 	}
+	
+	public void updateFavorite(String key, String desc)
+	{
+		ContentValues values = new ContentValues();
+		values.put(FavoriteTable.DESC, desc);
+		context.getContentResolver().update(FavoriteTable.CONTENT_URI, values, 
+				FavoriteTable.KEY + " LIKE ?", new String[] { key });
 		
+		Log.d(this.getClass().getSimpleName(), "Updated favorite " + key);
+	}
+	
 	public void setFavorite(String route, String direction, String stop, String desc)
 	{
 		Cursor cursor = null;

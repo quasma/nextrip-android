@@ -11,7 +11,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.database.Cursor;
-import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ListView;
@@ -142,4 +141,5 @@ public class DirectionActivity extends BaseListActivity
 	    intent.setClass(this, StopActivity.class);
 	    startActivity(intent);
 	}
+
 }

@@ -4,14 +4,23 @@ import com.quasma.android.bustrip.R;
 import com.quasma.android.bustrip.providers.FavoriteProviderContract.FavoriteTable;
 import com.quasma.android.bustrip.providers.StopNumberProviderContract.StopNumberTable;
 import com.quasma.android.bustrip.providers.StopProviderContract.StopTable;
+import com.quasma.android.bustrip.service.FavoriteProcessor;
 import com.quasma.android.bustrip.service.NexTripService;
 
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
-import android.os.Build;
 import android.os.Bundle;
+import android.text.InputType;
 import android.view.View;
-import android.widget.ListView;
+import android.view.View.OnFocusChangeListener;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
+import android.widget.AdapterView.OnItemLongClickListener;
+import android.widget.EditText;
 
 public class FavoriteActivity extends BaseListActivity 
 {
@@ -20,7 +29,79 @@ public class FavoriteActivity extends BaseListActivity
 	{
 		super.onCreate(savedInstanceState);
 		super.setUp(R.layout.favorite, false);
-		
+		getListView().setOnItemLongClickListener(new OnItemLongClickListener()
+		{
+			@Override
+			public boolean onItemLongClick(AdapterView<?> parent, final View v, int position, long id) 
+			{
+				Cursor cursor = (Cursor) getListAdapter().getItem(position);
+				String desc = cursor.getString(cursor.getColumnIndex(FavoriteTable.DESC));
+				final String key = cursor.getString(cursor.getColumnIndex(FavoriteTable.KEY));
+				AlertDialog.Builder alert = new AlertDialog.Builder(v.getContext());
+				final EditText input = new EditText(v.getContext());
+				input.setInputType(InputType.TYPE_TEXT_FLAG_AUTO_COMPLETE | InputType.TYPE_TEXT_FLAG_AUTO_CORRECT | InputType.TYPE_CLASS_TEXT);
+				input.setText(desc);
+				input.selectAll();
+				input.setOnFocusChangeListener(new OnFocusChangeListener() 
+				{
+			        @Override
+			        public void onFocusChange(View v, boolean hasFocus) 
+			        {
+			            input.post(new Runnable() 
+			            {
+			                @Override
+			                public void run() 
+			                {
+			                    InputMethodManager inputMethodManager= (InputMethodManager) FavoriteActivity.this.getSystemService(Context.INPUT_METHOD_SERVICE);
+			                    inputMethodManager.showSoftInput(input, InputMethodManager.SHOW_IMPLICIT);
+			                }
+			            });
+			        }
+			    });
+			    input.requestFocus();
+				alert.setView(input);
+				alert.setTitle("Edit Description");
+				
+				alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() 
+				{
+					public void onClick(DialogInterface dialog, int whichButton) 
+					{
+						String value = input.getText().toString();
+						FavoriteProcessor favoriteProcessor = new FavoriteProcessor(v.getContext());
+						favoriteProcessor.updateFavorite(key, value);
+					}
+				});
+
+				alert.setNegativeButton("Cancel", new DialogInterface.OnClickListener() 
+				{
+					public void onClick(DialogInterface dialog, int whichButton) 
+					{
+				    // Canceled.
+					}
+				});
+				alert.show();				
+				return true;
+			}
+		});
+		getListView().setOnItemClickListener( new OnItemClickListener()
+		{
+			@Override
+			public void onItemClick(AdapterView<?> parent, View v, int position,long id) 
+			{
+				Cursor cursor = (Cursor) getListAdapter().getItem(position);
+				String object = cursor.getString(cursor.getColumnIndex(FavoriteTable.TABLE));
+				long key      = cursor.getLong(cursor.getColumnIndex(FavoriteTable.KEY));
+				if (StopNumberTable.TABLE_NAME.equals(object))
+				{
+					doStopTrip(key);
+				}
+				else
+				if (StopTable.TABLE_NAME.equals(object))
+				{
+					doRouteTrip(key);
+				}
+			}			
+		});
 		setTitle(getString(R.string.choose_favorite));
 		
 		Cursor cursor = getContentResolver().query(FavoriteTable.CONTENT_URI,
@@ -37,23 +118,6 @@ public class FavoriteActivity extends BaseListActivity
 	protected void onResume() 
 	{
 		super.onResume();
-	}
-
-	@Override
-	protected void onListItemClick(ListView l, View v, int position, long id) 
-	{
-		Cursor cursor = (Cursor) getListAdapter().getItem(position);
-		String object = cursor.getString(cursor.getColumnIndex(FavoriteTable.TABLE));
-		long key      = cursor.getLong(cursor.getColumnIndex(FavoriteTable.KEY));
-		if (StopNumberTable.TABLE_NAME.equals(object))
-		{
-			doStopTrip(key);
-		}
-		else
-		if (StopTable.TABLE_NAME.equals(object))
-		{
-			doRouteTrip(key);
-		}
 	}
 
 	@Override
