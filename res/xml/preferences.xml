@@ -5,7 +5,14 @@
             
         <CheckBoxPreference
                 android:key="showfavoritesonstartup"
+                android:defaultValue="false"
                 android:title="@string/showfavorites"
                 android:summary="@string/summary_showfavorites_preference" />
+        
+        <CheckBoxPreference
+                android:key="lightbackground"
+                android:defaultValue="true"
+                android:title="@string/lightbackground"
+                android:summary="@string/summary_lightbackground_preference" />
             
 </PreferenceScreen>

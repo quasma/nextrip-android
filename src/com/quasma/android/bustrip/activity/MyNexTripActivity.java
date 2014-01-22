@@ -34,13 +34,14 @@ public class MyNexTripActivity extends Activity
 	public boolean showFavorites(Activity context)
 	{
    	 	SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context.getBaseContext());
-   	 	return prefs.getBoolean("showfavoritesonstartup", true);
+   	 	return prefs.getBoolean("showfavoritesonstartup", false);
 	}
 
 	   @Override
 	   public void onCreate(Bundle savedInstanceState) 
 	   {
 	        super.onCreate(savedInstanceState);
+	        
 	        if (getIntent().getCategories() != null
 	        &&  getIntent().getCategories().contains(Intent.CATEGORY_LAUNCHER)
 			&&  showFavorites(this))
@@ -142,7 +143,12 @@ public class MyNexTripActivity extends Activity
 		
 		private void doAbout()
 		{
-			Dialog about = new Dialog(this, R.style.AboutTheme);
+			SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+
+			Dialog about = new Dialog(this, 
+					prefs.getBoolean("lightbackground", true) 
+					? R.style.AboutTheme_Light : R.style.AboutTheme_Dark);
+			
 			about.setContentView(R.layout.about);
 			TextView view = (TextView) about.findViewById(R.id.abouttext);
 			try

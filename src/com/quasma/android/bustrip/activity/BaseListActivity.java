@@ -3,7 +3,11 @@ package com.quasma.android.bustrip.activity;
 import com.quasma.android.bustrip.R;
 
 import android.app.ListActivity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -20,11 +24,43 @@ public abstract class BaseListActivity extends ListActivity
 	private ProgressBar progressBar; 
 	private TextView title;
 
+	@Override
+	protected void onCreate(Bundle savedInstanceState) 
+	{
+		currentTheme = getThemePreference(this);
+		setTheme(currentTheme);
+		super.onCreate(savedInstanceState);
+	}
+
+	private static int getThemePreference(Context context)
+	{
+		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+		if (prefs.getBoolean("lightbackground", true))
+			return android.R.style.Theme_Light_NoTitleBar;
+		else
+			return android.R.style.Theme_Black_NoTitleBar;
+	}
+	
 	protected void setProgressBar(ProgressBar progressBar)
 	{
 		this.progressBar = progressBar;
 	}
 	
+	private Integer currentTheme = null;
+	
+	@Override
+	protected void onResume() 
+	{
+		super.onResume();
+		int preferenceTheme = getThemePreference(this); 
+		if (currentTheme != preferenceTheme)
+		{
+			Intent intent = getIntent();
+			finish();
+			startActivity(intent);
+		}
+	}
+
 	@Override
 	public void setTitle(CharSequence title)
 	{

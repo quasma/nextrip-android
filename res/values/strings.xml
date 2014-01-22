@@ -30,4 +30,6 @@
 	<string name="typetofilter">type to filter</string>
 	<string name="showfavorites">Show Favorites</string>
 	<string name="summary_showfavorites_preference">Show favorites on start up</string>	
+	<string name="lightbackground">Light Background</string>
+	<string name="summary_lightbackground_preference">Use a light background</string>	
 </resources>
